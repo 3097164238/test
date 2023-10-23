@@ -33,6 +33,5 @@ jobs:
       - name: Run a multi-line script
         run: |
           df -h
-          git clone https://oauth2:${{ secrets.ACTION }}@github.com/wjz304/rp-modules.git
-          cd rp-modules
-          ls
+          xz -V
+
