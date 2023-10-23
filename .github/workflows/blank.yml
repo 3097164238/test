@@ -33,5 +33,25 @@ jobs:
       - name: Run a multi-line script
         run: |
           df -h
-          xz -V
+
+          sudo apt update
+          sudo apt install -y cpio
+
+          curl -kLO https://media.githubusercontent.com/media/wjz304/rr/main/files/p3/initrd-rr
+          INITRD_FILE="initrd-rr"
+          OUTPUT_PATH="initrd-rr2"
+          RDXZ_PATH="rdxz_tmp"
+          mkdir -p "${RDXZ_PATH}"
+          (
+            cd "${RDXZ_PATH}"
+            xz -dc <"${INITRD_FILE}" | cpio -idm
+          )
+          ls -al "${RDXZ_PATH}/"
+          (
+            cd "${RDXZ_PATH}"
+            find . 2>/dev/null | cpio -o -H newc -R root:root | xz --check=crc32 >"${OUTPUT_PATH}"
+          )
+          rm -rf "${RDXZ_PATH}"
+
+          ls
 
