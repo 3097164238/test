@@ -38,6 +38,8 @@ jobs:
           sudo apt install -y cpio
 
           curl -kLO https://media.githubusercontent.com/media/wjz304/rr/main/files/p3/initrd-rr
+          ls -al 
+          
           INITRD_FILE="initrd-rr"
           OUTPUT_PATH="initrd-rr2"
           RDXZ_PATH="rdxz_tmp"
