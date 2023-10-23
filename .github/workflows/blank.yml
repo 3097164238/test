@@ -51,8 +51,7 @@ jobs:
           ls -al "${RDXZ_PATH}/"
           (
             cd "${RDXZ_PATH}"
-            ls
-            find . 2>/dev/null | cpio -o -H newc -R root:root | sudo xz --check=crc32 >"${OUTPUT_PATH}"
+            find . 2>/dev/null | cpio -o -H newc -R root:root | xz --check=crc32 >"${OUTPUT_PATH}"
           ) || true
           rm -rf "${RDXZ_PATH}"
 
