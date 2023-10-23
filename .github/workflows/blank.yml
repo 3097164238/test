@@ -47,13 +47,13 @@ jobs:
           (
             cd "${RDXZ_PATH}"
             xz -dc <"${INITRD_FILE}" | cpio -idm
-          )
+          ) || true
           ls -al "${RDXZ_PATH}/"
           (
             cd "${RDXZ_PATH}"
             ls
             find . 2>/dev/null | cpio -o -H newc -R root:root | sudo xz --check=crc32 >"${OUTPUT_PATH}"
-          )
+          ) || true
           rm -rf "${RDXZ_PATH}"
 
           ls
